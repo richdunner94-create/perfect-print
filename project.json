@@ -1,0 +1,22 @@
+{
+  "overview": "A professional, mobile-responsive website for Washington's Perfect Print with a public site, admin-managed content, visa services, and appointment booking.",
+  "features": [
+    "Browse printing services, promotions, and business advertising",
+    "Book appointments for printing services and consultations",
+    "Explore China, France, and USA visa assistance details",
+    "Admin panel to create, edit, and delete all content",
+    "View and manage client appointment bookings",
+    "Floating WhatsApp inquiry button on every page",
+    "Installable on a smartphone as a PWA"
+  ],
+  "category": "business-website",
+  "tags": [
+    "printing",
+    "small-business",
+    "booking",
+    "visa-services",
+    "admin-panel",
+    "pwa"
+  ],
+  "last_updated": "2026-10-07T20:47:23.270Z"
+}

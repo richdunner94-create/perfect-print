@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Bundled fonts — Fraunces (display), Figtree (body), JetBrains Mono (mono)
+   --------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 900;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 800;
+}
+
+@layer base {
+  :root {
+    --font-display: "Fraunces", serif;
+    --font-body: "Figtree", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --radius: 0.75rem;
+
+    /* Paper & ink — warm off-white paper, deep indigo ink */
+    --background: 0.985 0.004 85;
+    --foreground: 0.21 0.03 268;
+    --card: 1.0 0.002 85;
+    --card-foreground: 0.21 0.03 268;
+    --popover: 1.0 0.002 85;
+    --popover-foreground: 0.21 0.03 268;
+
+    /* Deep indigo ink — the brand's press ink */
+    --primary: 0.42 0.17 268;
+    --primary-foreground: 0.98 0.006 268;
+
+    --secondary: 0.95 0.008 268;
+    --secondary-foreground: 0.28 0.04 268;
+    --muted: 0.955 0.006 268;
+    --muted-foreground: 0.5 0.025 268;
+
+    /* Warm amber accent — paper warmth / visa stamp */
+    --accent: 0.74 0.15 68;
+    --accent-foreground: 0.22 0.05 68;
+
+    --destructive: 0.55 0.21 25;
+    --destructive-foreground: 0.98 0.006 25;
+
+    /* Booking status colors */
+    --success: 0.58 0.15 152;
+    --success-foreground: 0.98 0.006 152;
+    --warning: 0.72 0.15 82;
+    --warning-foreground: 0.22 0.05 82;
+    --info: 0.58 0.13 240;
+    --info-foreground: 0.98 0.006 240;
+
+    --border: 0.9 0.008 268;
+    --input: 0.9 0.008 268;
+    --ring: 0.42 0.17 268;
+
+    --chart-1: 0.42 0.17 268;
+    --chart-2: 0.74 0.15 68;
+    --chart-3: 0.58 0.15 152;
+    --chart-4: 0.58 0.13 240;
+    --chart-5: 0.55 0.21 25;
+
+    --sidebar: 0.975 0.006 268;
+    --sidebar-foreground: 0.21 0.03 268;
+    --sidebar-primary: 0.42 0.17 268;
+    --sidebar-primary-foreground: 0.98 0.006 268;
+    --sidebar-accent: 0.94 0.01 268;
+    --sidebar-accent-foreground: 0.28 0.04 268;
+    --sidebar-border: 0.9 0.008 268;
+    --sidebar-ring: 0.42 0.17 268;
+
+    /* Depth & atmosphere */
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.42 0.17 268),
+      oklch(0.34 0.16 285)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.985 0.004 85),
+      oklch(0.955 0.006 268)
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      oklch(0.74 0.15 68),
+      oklch(0.68 0.16 52)
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0.16 0.02 268;
+    --foreground: 0.95 0.008 268;
+    --card: 0.2 0.025 268;
+    --card-foreground: 0.95 0.008 268;
+    --popover: 0.22 0.028 268;
+    --popover-foreground: 0.95 0.008 268;
+
+    --primary: 0.72 0.14 268;
+    --primary-foreground: 0.16 0.02 268;
+
+    --secondary: 0.25 0.03 268;
+    --secondary-foreground: 0.85 0.01 268;
+    --muted: 0.25 0.03 268;
+    --muted-foreground: 0.6 0.02 268;
+
+    --accent: 0.78 0.14 68;
+    --accent-foreground: 0.18 0.04 68;
+
+    --destructive: 0.65 0.19 25;
+    --destructive-foreground: 0.16 0.02 25;
+
+    --success: 0.7 0.15 152;
+    --success-foreground: 0.16 0.02 152;
+    --warning: 0.78 0.14 82;
+    --warning-foreground: 0.18 0.04 82;
+    --info: 0.7 0.12 240;
+    --info-foreground: 0.16 0.02 240;
+
+    --border: 0.3 0.028 268;
+    --input: 0.3 0.028 268;
+    --ring: 0.72 0.14 268;
+
+    --chart-1: 0.72 0.14 268;
+    --chart-2: 0.78 0.14 68;
+    --chart-3: 0.7 0.15 152;
+    --chart-4: 0.7 0.12 240;
+    --chart-5: 0.65 0.19 25;
+
+    --sidebar: 0.2 0.025 268;
+    --sidebar-foreground: 0.95 0.008 268;
+    --sidebar-primary: 0.72 0.14 268;
+    --sidebar-primary-foreground: 0.16 0.02 268;
+    --sidebar-accent: 0.25 0.03 268;
+    --sidebar-accent-foreground: 0.85 0.01 268;
+    --sidebar-border: 0.3 0.028 268;
+    --sidebar-ring: 0.72 0.14 268;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.6 0.15 268),
+      oklch(0.5 0.15 285)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.16 0.02 268),
+      oklch(0.2 0.025 268)
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      oklch(0.78 0.14 68),
+      oklch(0.7 0.15 52)
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+  .bg-gradient-accent {
+    background-image: var(--gradient-accent);
+  }
+  .text-gradient-primary {
+    background-image: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Paper grain texture — subtle, low-opacity, decorative only */
+  .texture-paper {
+    background-image: radial-gradient(
+      oklch(var(--foreground) / 0.035) 1px,
+      transparent 1px
+    );
+    background-size: 4px 4px;
+  }
+  .shadow-subtle {
+    box-shadow: 0 1px 2px oklch(var(--foreground) / 0.04), 0 1px 3px
+      oklch(var(--foreground) / 0.06);
+  }
+  .shadow-elevated {
+    box-shadow: 0 4px 12px oklch(var(--foreground) / 0.06), 0 12px 32px
+      oklch(var(--foreground) / 0.08);
+  }
+  .shadow-ink {
+    box-shadow: 0 8px 24px oklch(var(--primary) / 0.18), 0 2px 6px
+      oklch(var(--primary) / 0.12);
+  }
+}

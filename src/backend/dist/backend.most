@@ -1,0 +1,187 @@
+// Version: 4.0.0
+type AccessControlState__201339279 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__230067015<Principal, UserRole__91647283>
+  };
+type BookingStatus__278555048 =
+  {#cancelled; #completed; #confirmed; #pending};
+type BookingStatus__866642965 =
+  {#cancelled; #completed; #confirmed; #pending};
+type Booking__1057793126 =
+  {
+    createdAt : Int;
+    email : Text;
+    id : Nat;
+    name : Text;
+    notes : Text;
+    phone : Text;
+    preferredDate : Text;
+    preferredTime : Text;
+    serviceType : Text;
+    status : BookingStatus__866642965
+  };
+type Booking__854330665 =
+  {
+    createdAt : Int;
+    email : Text;
+    id : Nat;
+    name : Text;
+    notes : Text;
+    phone : Text;
+    preferredDate : Text;
+    preferredTime : Text;
+    serviceType : Text;
+    status : BookingStatus__278555048
+  };
+type ContactMessage__737907008 =
+  {
+    createdAt : Int;
+    email : Text;
+    id : Nat;
+    message : Text;
+    name : Text;
+    phone : Text
+  };
+type ContactMessage__84138439 =
+  {
+    createdAt : Int;
+    email : Text;
+    id : Nat;
+    message : Text;
+    name : Text;
+    phone : Text
+  };
+type Data__44217153<K, V> = {var count : Nat__227979830; kvs : [var ?(K, V)]};
+type Internal__283199666<K, V> =
+  {children : [var ?Node__204828119<K, V>]; data : Data__44217153<K, V>};
+type Leaf__598469445<K, V> = {data : Data__44217153<K, V>};
+type Map__230067015<K, V> = Map__405889023<K, V>;
+type Map__405889023<K, V> = Map__603270868<K, V>;
+type Map__603270868<K, V> =
+  {var root : Node__204828119<K, V>; var size : Nat__227979830};
+type Nat__227979830 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__769816496 =
+  {
+    accessControlState : AccessControlState__201339279;
+    bookings : Map__230067015<Nat, Booking__854330665>;
+    contactMessages : Map__230067015<Nat, ContactMessage__737907008>;
+    counters :
+      {
+        var nextBookingId : Nat;
+        var nextContactMessageId : Nat;
+        var nextPostId : Nat;
+        var nextServiceId : Nat
+      };
+    posts : Map__230067015<Nat, Post__954417252>;
+    services : Map__230067015<Nat, Service__895647889>;
+    visas : Map__230067015<VisaCountry__433055010, VisaDetails__552488726>
+  };
+type Node__204828119<K, V> =
+  {#internal : Internal__283199666<K, V>; #leaf : Leaf__598469445<K, V>};
+type OldActor__512397517 = {};
+type PostCategory__239308246 = {#advertising; #announcement; #promotion};
+type PostCategory__539789078 = {#advertising; #announcement; #promotion};
+type Post__495728462 =
+  {
+    body : Text;
+    category : PostCategory__239308246;
+    createdAt : Int;
+    id : Nat;
+    imageUrl : ?Text;
+    published : Bool;
+    title : Text
+  };
+type Post__954417252 =
+  {
+    body : Text;
+    category : PostCategory__539789078;
+    createdAt : Int;
+    id : Nat;
+    imageUrl : ?Text;
+    published : Bool;
+    title : Text
+  };
+type Service__895647889 =
+  {
+    active : Bool;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    imageUrl : ?Text;
+    title : Text
+  };
+type Service__980514341 =
+  {
+    active : Bool;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    imageUrl : ?Text;
+    title : Text
+  };
+type UserRole__91647283 = {#admin; #guest; #user};
+type VisaCountry__38411846 = {#china; #france; #usa};
+type VisaCountry__433055010 = {#china; #france; #usa};
+type VisaDetails__312978609 =
+  {
+    country : VisaCountry__38411846;
+    description : Text;
+    fees : Text;
+    processingInfo : Text;
+    requirements : Text;
+    title : Text
+  };
+type VisaDetails__552488726 =
+  {
+    country : VisaCountry__433055010;
+    description : Text;
+    fees : Text;
+    processingInfo : Text;
+    requirements : Text;
+    title : Text
+  };
+{
+  "00000000_000000" : OldActor__512397517 -> NewActor__769816496
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__230067015<Principal, UserRole__91647283>
+    };
+  stable bookings :
+    {
+      var root : Node__204828119<Nat, Booking__1057793126>;
+      var size : Nat__227979830
+    };
+  stable contactMessages :
+    {
+      var root : Node__204828119<Nat, ContactMessage__84138439>;
+      var size : Nat__227979830
+    };
+  stable counters :
+    {
+      var nextBookingId : Nat;
+      var nextContactMessageId : Nat;
+      var nextPostId : Nat;
+      var nextServiceId : Nat
+    };
+  stable posts :
+    {
+      var root : Node__204828119<Nat, Post__495728462>;
+      var size : Nat__227979830
+    };
+  stable services :
+    {
+      var root : Node__204828119<Nat, Service__980514341>;
+      var size : Nat__227979830
+    };
+  stable visas :
+    {
+      var root :
+        Node__204828119<VisaCountry__38411846, VisaDetails__312978609>;
+      var size : Nat__227979830
+    }
+};

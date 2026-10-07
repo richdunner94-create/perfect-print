@@ -1,0 +1,168 @@
+type VisaDetails = 
+ record {
+   country: VisaCountry;
+   description: text;
+   fees: text;
+   processingInfo: text;
+   requirements: text;
+   title: text;
+ };
+type VisaCountry = 
+ variant {
+   china;
+   france;
+   usa;
+ };
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Service = 
+ record {
+   active: bool;
+   createdAt: int;
+   description: text;
+   id: nat;
+   imageUrl: opt text;
+   title: text;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type PostCategory = 
+ variant {
+   advertising;
+   announcement;
+   promotion;
+ };
+type Post = 
+ record {
+   body: text;
+   category: PostCategory;
+   createdAt: int;
+   id: nat;
+   imageUrl: opt text;
+   published: bool;
+   title: text;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type DashboardCounts = 
+ record {
+   contactMessages: nat;
+   pendingAppointments: nat;
+   posts: nat;
+   services: nat;
+   totalAppointments: nat;
+ };
+type ContactMessage = 
+ record {
+   createdAt: int;
+   email: text;
+   id: nat;
+   message: text;
+   name: text;
+   phone: text;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type BookingStatus = 
+ variant {
+   cancelled;
+   completed;
+   confirmed;
+   pending;
+ };
+type Booking = 
+ record {
+   createdAt: int;
+   email: text;
+   id: nat;
+   name: text;
+   notes: text;
+   phone: text;
+   preferredDate: text;
+   preferredTime: text;
+   serviceType: text;
+   status: BookingStatus;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createBooking: (name: text, phone: text, email: text, serviceType: 
+   text, preferredDate: text, preferredTime: text, notes: text) -> (nat);
+  createPost: (title: text, body: text, imageUrl: opt text, category:
+   PostCategory, published: bool) -> (nat);
+  createService: (title: text, description: text, imageUrl: opt text, active:
+   bool) -> (nat);
+  deleteBooking: (id: nat) -> (bool);
+  deleteContactMessage: (id: nat) -> (bool);
+  deletePost: (id: nat) -> (bool);
+  deleteService: (id: nat) -> (bool);
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getDashboardCounts: () -> (DashboardCounts) query;
+  getPost: (id: nat) -> (opt Post) query;
+  getService: (id: nat) -> (opt Service) query;
+  getVisa: (country: VisaCountry) -> (opt VisaDetails) query;
+  isCallerAdmin: () -> (bool) query;
+  listBookings: () -> (vec Booking) query;
+  listContactMessages: () -> (vec ContactMessage) query;
+  listPosts: () -> (vec Post) query;
+  listServices: () -> (vec Service) query;
+  listVisas: () -> (vec VisaDetails) query;
+  schema: () -> (text) query;
+  submitContactMessage: (name: text, email: text, phone: text, message:
+   text) -> (nat);
+  updateBookingStatus: (id: nat, status: BookingStatus) -> (bool);
+  updatePost: (id: nat, title: text, body: text, imageUrl: opt text,
+   category: PostCategory, published: bool) -> (bool);
+  updateService: (id: nat, title: text, description: text, imageUrl:
+   opt text, active: bool) -> (bool);
+  updateVisa: (country: VisaCountry, title: text, description: text,
+   requirements: text, processingInfo: text, fees: text) -> (bool);
+}
